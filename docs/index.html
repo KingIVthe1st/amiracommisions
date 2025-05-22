@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commission Artwork | Amira Rahim</title>
+    <meta name="description" content="Commission a unique, vibrant artwork by Amira Rahim. Transform your space with custom art that speaks to your soul.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1>Transform Your Space with Custom Art</h1>
+            <p class="hero-subtitle">Commission a one-of-a-kind piece by internationally recognized artist Amira Rahim</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary btn-large">Start Your Commission</a>
+                <a href="https://www.instagram.com/amirarahimart" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-large">View Portfolio</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Quick Info -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Custom Sizes</h3>
+                    <p>From intimate pieces to statement works, sized perfectly for your space</p>
+                </div>
+                <div class="info-card">
+                    <h3>Your Vision</h3>
+                    <p>Collaborate directly with Amira to bring your artistic vision to life</p>
+                </div>
+                <div class="info-card">
+                    <h3>Worldwide Shipping</h3>
+                    <p>Secure packaging and international shipping available</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <section id="contact" class="contact-section">
+                <h2>Request Your Commission</h2>
+                <p class="contact-intro">Fill out the form below to start your artistic journey</p>
+                <form id="commission-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Desired Size</label>
+                        <select id="size" name="size">
+                            <option value="">Select size</option>
+                            <option value="small">Small (up to 24")</option>
+                            <option value="medium">Medium (24" - 48")</option>
+                            <option value="large">Large (48"+)</option>
+                            <option value="custom">Custom Size</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">Tell Us About Your Vision *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large">Submit Inquiry</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Amira Rahim. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/amirarahimart" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="mailto:commissions@amirarahim.com">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
