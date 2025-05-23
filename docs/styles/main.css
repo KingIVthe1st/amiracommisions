@@ -332,6 +332,10 @@ p {
     box-shadow: var(--shadow-md);
 }
 
+.btn-primary:hover span {
+    color: var(--primary) !important;
+}
+
 .btn-outline {
     background-color: transparent;
     color: var(--white);
@@ -541,6 +545,47 @@ p {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 60px;
+    align-items: start; /* Change to start for perfect alignment */
+}
+
+/* Fix for consistent artwork grid alignment */
+.featured-works .artwork-grid {
+    display: grid;
+    grid-auto-rows: 400px; /* Force exact same height for all rows */
+    margin-bottom: 60px;
+}
+
+.artwork-item {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 400px;
+    min-height: 400px;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.artwork-image {
+    width: 100%;
+    height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+.artwork-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .artwork-item {
@@ -1011,15 +1056,15 @@ p {
 }
 
 /* Fade-in animations */
-.fade-in {
+.artwork-item.fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.7s cubic-bezier(0.77,0,0.18,1);
 }
 
-.fade-in.appear {
+.artwork-item.appear {
     opacity: 1;
-    transform: translateY(0);
+    box-shadow: 0 0 0 0 var(--primary), 0 4px 24px rgba(212, 175, 55, 0.10), var(--shadow-md);
+    /* Subtle gold glow on reveal */
 }
 
 .site-loaded .container {

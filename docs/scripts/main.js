@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.classList.add('fade-in');
         appearOnScroll.observe(item);
     });
+    // No movement/transform is applied to .artwork-item on scroll or reveal.
 
     // For steps staggered animation
     const steps = document.querySelectorAll('.step');
