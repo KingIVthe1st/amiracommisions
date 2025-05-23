@@ -29,26 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Artwork hover effects
-    const artworkItems = document.querySelectorAll('.artwork-item');
-
-    artworkItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            artworkItems.forEach(other => {
-                if (other !== item) {
-                    other.style.opacity = '0.6';
-                    other.style.transform = 'scale(0.98)';
-                }
-            });
-        });
-
-        item.addEventListener('mouseleave', () => {
-            artworkItems.forEach(other => {
-                other.style.opacity = '1';
-                other.style.transform = 'translateY(0)';
-            });
-        });
-    });
+    // Smooth artwork transitions are now handled entirely by CSS
+    // No JavaScript manipulation needed for artwork hover effects
 
     // Intersection Observer for reveal animations
     const observerOptions = {
@@ -77,10 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
         step.style.transitionDelay = `${index * 0.1}s`;
     });
 
-    // For artwork staggered animation
+    // Initialize artwork items with a subtle fade-in (no movement)
     const artworks = document.querySelectorAll('.artwork-item');
     artworks.forEach((artwork, index) => {
-        artwork.style.transitionDelay = `${index * 0.1}s`;
+        // Add a very small delay for initial fade in only
+        artwork.style.animationDelay = `${index * 0.05}s`;
     });
 
     // Add parallax effect to hero section
