@@ -545,40 +545,57 @@ p {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 60px;
-    align-items: start; /* Change to start for perfect alignment */
-}
-
-/* Fix for consistent artwork grid alignment */
-.featured-works .artwork-grid {
-    display: grid;
-    grid-auto-rows: 400px; /* Force exact same height for all rows */
-    margin-bottom: 60px;
+    align-items: stretch;
+    grid-auto-rows: 400px; /* Enforce exact same height for all grid items */
 }
 
 .artwork-item {
-    aspect-ratio: 1 / 1;
+    /* Reset all properties */
+    position: relative;
     width: 100%;
-    height: 400px;
-    min-height: 400px;
-    max-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    height: 400px !important; /* Force exact height */
+    margin: 0 !important;
+    padding: 0 !important;
     border-radius: 12px;
     overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.4s ease;
+    /* Reset any potential transforms */
+    transform: none !important;
+    /* Layout properties */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Override any animation transforms */
+.artwork-item.fade-in,
+.artwork-item.appear {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+.artwork-item:hover {
+    box-shadow: var(--shadow-xl);
+}
+
+.artwork-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+    color: var(--white);
 }
 
 .artwork-image {
     width: 100%;
     height: 100%;
-    flex: 1 1 auto;
-    display: flex;
-    align-items: stretch;
-    justify-content: stretch;
+    position: relative;
+    will-change: filter;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .artwork-image img {
@@ -586,20 +603,10 @@ p {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: filter 0.5s ease;
 }
 
-.artwork-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: box-shadow 0.4s ease;
-    height: 100%;
-}
-
-.artwork-item:hover {
-    box-shadow: var(--shadow-xl);
-}
+/* Artwork overlay styles */
 
 .artwork-link {
     display: block;
