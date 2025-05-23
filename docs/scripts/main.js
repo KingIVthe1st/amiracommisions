@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Preloader
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 2500);
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -13,35 +29,78 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Form handling
-    const commissionForm = document.getElementById('commission-form');
+    // Artwork hover effects
+    const artworkItems = document.querySelectorAll('.artwork-item');
 
-    if (commissionForm) {
-        commissionForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Basic form validation
-            const requiredFields = commissionForm.querySelectorAll('[required]');
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('error');
-                } else {
-                    field.classList.remove('error');
+    artworkItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            artworkItems.forEach(other => {
+                if (other !== item) {
+                    other.style.opacity = '0.6';
+                    other.style.transform = 'scale(0.98)';
                 }
             });
-
-            if (!isValid) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Here you would typically send the form data to your server
-            // For now, we'll just show a success message
-            alert('Thank you for your inquiry! We will contact you soon.');
-            commissionForm.reset();
         });
-    }
+
+        item.addEventListener('mouseleave', () => {
+            artworkItems.forEach(other => {
+                other.style.opacity = '1';
+                other.style.transform = 'translateY(0)';
+            });
+        });
+    });
+
+    // Intersection Observer for reveal animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('appear');
+            observer.unobserve(entry.target);
+        });
+    }, observerOptions);
+
+    // Observe all sections and elements with animation classes
+    document.querySelectorAll('section, .step, .artwork-item, .glass-panel').forEach(item => {
+        item.classList.add('fade-in');
+        appearOnScroll.observe(item);
+    });
+
+    // For steps staggered animation
+    const steps = document.querySelectorAll('.step');
+    steps.forEach((step, index) => {
+        step.style.transitionDelay = `${index * 0.1}s`;
+    });
+
+    // For artwork staggered animation
+    const artworks = document.querySelectorAll('.artwork-item');
+    artworks.forEach((artwork, index) => {
+        artwork.style.transitionDelay = `${index * 0.1}s`;
+    });
+
+    // Add parallax effect to hero section
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        if (hero) {
+            hero.style.backgroundPositionY = `${scrollPosition * 0.4}px`;
+        }
+    });
+});
+
+// Add CSS class when document is fully loaded
+window.addEventListener('load', () => {
+    document.body.classList.add('site-loaded');
+    
+    // Add fade-in animation to body
+    setTimeout(() => {
+        document.querySelectorAll('.fade-in').forEach(item => {
+            item.classList.add('appear');
+        });
+    }, 300);
 });
