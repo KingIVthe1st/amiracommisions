@@ -194,17 +194,31 @@
     color: var(--primary);
 }
 
-/* Special effect for the featured section */
-.featured-works .section-title.revealed::after {
-    animation: shimmer 3s infinite alternate;
+/* Luxury shimmer effect for section title gold lines */
+.featured-works .section-title.revealed::after,
+.process-section .section-title.revealed::after {
+    background-size: 200px 100%;
+    animation: luxury-shimmer 3s infinite linear;
+    background: linear-gradient(
+        90deg,
+        rgba(212, 175, 55, 0.2) 0%,
+        rgba(212, 175, 55, 1) 15%,
+        rgba(255, 215, 0, 1) 25%,
+        rgba(212, 175, 55, 1) 35%,
+        rgba(212, 175, 55, 1) 65%,
+        rgba(255, 215, 0, 1) 75%,
+        rgba(212, 175, 55, 1) 85%,
+        rgba(212, 175, 55, 0.2) 100%
+    );
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
-@keyframes shimmer {
+@keyframes luxury-shimmer {
     0% {
-        background-position: -100px;
+        background-position: -200px 0;
     }
     100% {
-        background-position: 100px;
+        background-position: 200px 0;
     }
 }
 
