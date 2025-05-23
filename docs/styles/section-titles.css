@@ -194,31 +194,54 @@
     color: var(--primary);
 }
 
-/* Luxury shimmer effect for section title gold lines */
+/* Enhanced luxury shimmer effect for section title gold lines */
 .featured-works .section-title.revealed::after,
 .process-section .section-title.revealed::after {
-    background-size: 200px 100%;
-    animation: luxury-shimmer 3s infinite linear;
+    background-size: 300px 100%;
+    animation: luxury-shimmer 4s infinite linear;
     background: linear-gradient(
         90deg,
-        rgba(212, 175, 55, 0.2) 0%,
-        rgba(212, 175, 55, 1) 15%,
-        rgba(255, 215, 0, 1) 25%,
-        rgba(212, 175, 55, 1) 35%,
-        rgba(212, 175, 55, 1) 65%,
-        rgba(255, 215, 0, 1) 75%,
-        rgba(212, 175, 55, 1) 85%,
-        rgba(212, 175, 55, 0.2) 100%
+        rgba(212, 175, 55, 0.1) 0%,
+        rgba(212, 175, 55, 0.8) 10%,
+        rgba(255, 215, 0, 1) 20%,
+        rgba(255, 235, 128, 1) 30%,
+        rgba(212, 175, 55, 1) 40%,
+        rgba(212, 175, 55, 0.8) 50%,
+        rgba(212, 175, 55, 1) 60%,
+        rgba(255, 235, 128, 1) 70%,
+        rgba(255, 215, 0, 1) 80%,
+        rgba(212, 175, 55, 0.8) 90%,
+        rgba(212, 175, 55, 0.1) 100%
     );
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    height: 2.5px;
+    /* Add slight curve to the line for more elegance */
+    border-radius: 1.5px;
+    /* Ensure it stays on top */
+    z-index: 2;
+    /* Add a secondary subtle pulsing glow */
+    animation: 
+        luxury-shimmer 4s infinite linear,
+        subtle-pulse 2s infinite alternate ease-in-out;
 }
 
 @keyframes luxury-shimmer {
     0% {
-        background-position: -200px 0;
+        background-position: -300px 0;
     }
     100% {
-        background-position: 200px 0;
+        background-position: 300px 0;
+    }
+}
+
+@keyframes subtle-pulse {
+    0% {
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        opacity: 0.92;
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+        opacity: 1;
     }
 }
 
