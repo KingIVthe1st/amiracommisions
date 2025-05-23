@@ -41,6 +41,10 @@
 
 .section-title.revealed::after {
     width: 120px;
+    /* Ensure the line is centered properly */
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
 }
 
 /* Side-to-side title reveal animation */
@@ -89,6 +93,7 @@
     justify-content: center;
     width: 100%;
     text-align: center;
+    margin: 0 auto;
 }
 
 .section-title.revealed .word {
