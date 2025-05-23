@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collector's Favorites: Limited Commission Series | Amira Rahim</title>
     <meta name="description" content="Own a reimagined version of Amira Rahim's most beloved artworks through our exclusive, made-to-order commission series.">
-    <!-- Primary Styles -->
+    <!-- Preload main CSS for faster rendering -->
+    <link rel="preload" href="styles/main.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles/main.css"></noscript>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/luxury-effects.css">
     <link rel="stylesheet" href="styles/section-titles.css">
@@ -282,9 +284,9 @@
     </footer>
 
     <!-- Core Scripts -->
-    <script src="scripts/main.js"></script>
-    <script src="scripts/luxury-effects.js"></script>
-    <script src="scripts/scroll-animations.js"></script>
+    <script src="scripts/main.js" defer></script>
+    <script src="scripts/luxury-effects.js" defer></script>
+    <script src="scripts/scroll-animations.js" defer></script>
     
     <!-- Add microinteractions on load -->
     <script>
