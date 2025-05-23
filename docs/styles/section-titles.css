@@ -186,8 +186,9 @@
     color: var(--primary);
 }
 
-/* Special effect for the featured section */
-.featured-works .section-title.revealed::after {
+/* Special effect for section titles with moving light effect */
+.featured-works .section-title.revealed::after,
+.process-section .section-title.revealed::after {
     animation: shimmer 3s infinite alternate;
 }
 
