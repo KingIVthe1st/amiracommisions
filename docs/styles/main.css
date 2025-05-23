@@ -902,24 +902,38 @@ p {
 
 
 
-/* Footer */
+/* Premium Footer */
 .footer {
-    background-color: var(--dark);
+    background: linear-gradient(to bottom, #2c2c2e, #1c1c1e);
     padding: 4rem 0 2rem;
     color: var(--white);
     position: relative;
     overflow: hidden;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: inset 0 15px 15px -10px rgba(0, 0, 0, 0.2);
 }
 
 .footer::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.07), transparent 70%);
+    pointer-events: none;
+}
+
+.footer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.05), transparent 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.03), transparent 60%);
     pointer-events: none;
+    opacity: 0.7;
 }
 
 .footer-content {
@@ -927,8 +941,19 @@ p {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
     padding-bottom: 2rem;
+    position: relative;
+}
+
+.footer-content::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 25%;
+    right: 25%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.3), transparent);
 }
 
 .footer-logo {
@@ -945,19 +970,52 @@ p {
     color: var(--white);
     text-decoration: none;
     font-size: 1.2rem;
-    transition: color var(--transition-fast), transform var(--transition-fast);
+    transition: all 0.3s ease;
     display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 .footer-links a:hover {
     color: var(--primary);
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.1), 0 0 0 4px rgba(212, 175, 55, 0.05);
+    background: rgba(212, 175, 55, 0.03);
 }
 
 .copyright {
     text-align: center;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+    font-family: var(--body-font);
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 20px;
+}
+
+.copyright p {
+    position: relative;
+    z-index: 2;
+}
+
+.copyright::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.2);
+    left: 50%;
+    top: -15px;
+    transform: translateX(-50%);
 }
 
 /* Media Queries */
