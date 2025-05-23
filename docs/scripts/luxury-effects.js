@@ -5,9 +5,6 @@
 
 // Initialize when document is fully loaded
 document.addEventListener("DOMContentLoaded", function() {
-    // Create and append custom cursor elements
-    initCustomCursor();
-    
     // Initialize magnetic buttons
     initMagneticElements();
     
@@ -24,84 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     initParticles();
 });
 
-// Custom cursor implementation
-function initCustomCursor() {
-    const cursor = document.createElement('div');
-    cursor.classList.add('custom-cursor');
-    
-    const follower = document.createElement('div');
-    follower.classList.add('cursor-follower');
-    
-    document.body.appendChild(cursor);
-    document.body.appendChild(follower);
-    
-    // Add noise texture to background
-    const noise = document.createElement('div');
-    noise.classList.add('noise-bg');
-    document.body.appendChild(noise);
-    
-    // Set initial position off-screen
-    let mouseX = -100;
-    let mouseY = -100;
-    let cursorX = -100;
-    let cursorY = -100;
-    let followerX = -100;
-    let followerY = -100;
-    
-    // After a small delay, show the cursor
-    setTimeout(() => {
-        cursor.classList.add('cursor-active');
-        follower.classList.add('cursor-active');
-    }, 1000);
-    
-    // Track mouse position
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-    
-    // Check if cursor is over interactive elements
-    document.addEventListener('mouseover', (e) => {
-        if (
-            e.target.tagName === 'A' || 
-            e.target.tagName === 'BUTTON' || 
-            e.target.classList.contains('artwork-item') || 
-            e.target.closest('.btn') || 
-            e.target.closest('.artwork-item')
-        ) {
-            follower.classList.add('cursor-hover');
-        }
-    });
-    
-    document.addEventListener('mouseout', (e) => {
-        if (
-            e.target.tagName === 'A' || 
-            e.target.tagName === 'BUTTON' || 
-            e.target.classList.contains('artwork-item') || 
-            e.target.closest('.btn') || 
-            e.target.closest('.artwork-item')
-        ) {
-            follower.classList.remove('cursor-hover');
-        }
-    });
-    
-    // Smooth cursor animation
-    function animateCursor() {
-        // Smooth cursor movement with easing
-        cursorX += (mouseX - cursorX) * 0.2;
-        cursorY += (mouseY - cursorY) * 0.2;
-        
-        followerX += (mouseX - followerX) * 0.1;
-        followerY += (mouseY - followerY) * 0.1;
-        
-        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-        follower.style.transform = `translate(${followerX}px, ${followerY}px)`;
-        
-        requestAnimationFrame(animateCursor);
-    }
-    
-    animateCursor();
-}
+// Custom cursor implementation removed - using default browser cursor
 
 // Magnetic elements that attract the cursor
 function initMagneticElements() {
@@ -147,21 +67,79 @@ function initTextSplitting() {
         
         heading.classList.add('split-text');
         
-        // Get the text content and split into characters
+        // Get the text content and split into words
         const text = heading.textContent;
+        const words = text.split(' ');
         heading.textContent = '';
         
-        // Create spans for each character
-        for (let i = 0; i < text.length; i++) {
-            const char = text[i];
-            const span = document.createElement('span');
-            span.classList.add('char');
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            span.style.setProperty('--char-index', i);
-            heading.appendChild(span);
+        // For section titles, create a container for better centering
+        if (heading.classList.contains('section-title')) {
+            const container = document.createElement('div');
+            container.classList.add('section-title-container');
+            heading.appendChild(container);
+            
+            // Create spans for each word
+            words.forEach((word, index) => {
+                const span = document.createElement('span');
+                span.classList.add('word');
+                span.textContent = word;
+                span.style.setProperty('--word-index', index);
+                container.appendChild(span);
+                
+                // Don't add space after the last word
+                if (index < words.length - 1) {
+                    container.appendChild(document.createTextNode(' '));
+                }
+            });
+        } else {
+            // For non-section titles, add words directly
+            words.forEach((word, index) => {
+                const span = document.createElement('span');
+                span.classList.add('word');
+                span.textContent = word;
+                span.style.setProperty('--word-index', index);
+                heading.appendChild(span);
+                
+                // Don't add space after the last word
+                if (index < words.length - 1) {
+                    heading.appendChild(document.createTextNode(' '));
+                }
+            });
+        }
+        
+        // Add the ornamental divider after the section title
+        if (heading.classList.contains('section-title') && 
+            (!heading.nextElementSibling || !heading.nextElementSibling.classList.contains('section-ornament'))) {
+            const ornament = document.createElement('span');
+            ornament.classList.add('section-ornament');
+            heading.parentNode.insertBefore(ornament, heading.nextSibling);
         }
         
         // Set up intersection observer to reveal when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add revealed class to the title
+                    entry.target.classList.add('revealed');
+                    
+                    // Also reveal the subtitle if it exists
+                    const subtitle = entry.target.nextElementSibling;
+                    if (subtitle && subtitle.classList.contains('section-subtitle')) {
+                        setTimeout(() => {
+                            subtitle.classList.add('revealed');
+                        }, 300);
+                    }
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+        
+        observer.observe(heading);
+    });
+    
+    // Also setup observers for section subtitles
+    document.querySelectorAll('.section-subtitle').forEach(subtitle => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -169,9 +147,9 @@ function initTextSplitting() {
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
         
-        observer.observe(heading);
+        observer.observe(subtitle);
     });
 }
 
@@ -284,15 +262,21 @@ window.addEventListener('scroll', function() {
         item.style.transform = `translateY(${scrollPosition * speed}px)`;
     });
     
-    // Parallax for section titles
+    // Enhanced hover effect for section titles
     document.querySelectorAll('.section-title').forEach(title => {
-        const rect = title.getBoundingClientRect();
-        const centerPoint = window.innerHeight / 2;
-        const distanceFromCenter = rect.top - centerPoint;
-        
-        // Only apply parallax when near viewport center
-        if (Math.abs(distanceFromCenter) < window.innerHeight) {
-            title.style.transform = `translateY(${distanceFromCenter * -0.05}px)`;
+        // Skip parallax effect since we have more sophisticated animations now
+        // Instead, add subtle glow effect on hover interaction
+        if (title.classList.contains('revealed')) {
+            // Track mouse position for subtle glow effect
+            title.addEventListener('mousemove', (e) => {
+                const rect = title.getBoundingClientRect();
+                const x = e.clientX - rect.left; 
+                const y = e.clientY - rect.top;
+                
+                // Update glow position based on mouse
+                title.style.setProperty('--x-position', `${x}px`);
+                title.style.setProperty('--y-position', `${y}px`);
+            });
         }
     });
 });

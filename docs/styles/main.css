@@ -588,11 +588,12 @@ p {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.4) 80%, transparent);
     padding: 2rem 1.5rem 1.5rem;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity var(--transition-medium), transform var(--transition-medium);
+    height: 70%; /* Extend the overlay height */
 }
 
 .artwork-item:hover .artwork-overlay {
@@ -604,22 +605,29 @@ p {
     color: var(--primary);
     margin-bottom: 0.5rem;
     font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    font-size: 1.4rem;
 }
 
 .artwork-description {
     color: var(--white);
-    font-size: 0.95rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
-    opacity: 0.9;
+    opacity: 1;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    font-weight: 400;
 }
 
 .view-more {
     display: inline-block;
     color: var(--primary);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     border-bottom: 1px solid transparent;
     transition: border-color var(--transition-fast);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     font-weight: 500;
+    padding: 2px 0;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -724,6 +732,21 @@ p {
 }
 
 /* Testimonial Section */
+.section-transition,
+.section-transition.dark-section {
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    height: 0 !important;
+}
+
+.section-transition.dark-section {
+    padding: 8rem 0;
+    background-color: var(--dark);
+    position: relative;
+    overflow: hidden;
+}
+
 .testimonial-section {
     padding: 8rem 0;
     background-color: var(--dark);

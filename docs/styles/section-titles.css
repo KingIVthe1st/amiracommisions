@@ -1,0 +1,212 @@
+/* ==========================================================================
+   #SECTION TITLES - Luxury Animation Effects
+   ========================================================================== */
+
+/* Base Section Title Styling */
+.section-title {
+    text-align: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    padding-bottom: 2rem;
+    font-family: var(--heading-font);
+    color: var(--dark);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Gold Gradient Underline */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(212, 175, 55, 0),
+        rgba(212, 175, 55, 1) 20%,
+        rgba(212, 175, 55, 1) 80%,
+        rgba(212, 175, 55, 0)
+    );
+    transform: translateX(-50%);
+    transition: width 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.section-title.revealed::after {
+    width: 120px;
+}
+
+/* Side-to-side title reveal animation */
+.section-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevent words from breaking */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--light) 0%, rgba(249, 247, 243, 0.8) 50%, var(--light) 100%);
+    transform: translateX(-100%);
+    animation: revealMask 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    z-index: 5;
+}
+
+@keyframes revealMask {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.section-title .word {
+    display: inline-block;
+    margin-right: 0.3em; /* Space between words */
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Center the title text container */
+.section-title-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.section-title.revealed .word {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Staggered delay for each word */
+.section-title .word {
+    transition-delay: calc(var(--word-index) * 0.1s + 0.2s);
+}
+
+/* Gold accent - ornamental divider */
+.section-ornament {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--primary);
+    margin: 0 auto;
+    position: relative;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), opacity 1s ease;
+}
+
+.section-title.revealed + .section-ornament {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.section-ornament::before,
+.section-ornament::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.6s, opacity 0.6s ease 0.6s;
+}
+
+.section-ornament::before {
+    left: -3px;
+}
+
+.section-ornament::after {
+    right: -3px;
+}
+
+.section-title.revealed + .section-ornament::before,
+.section-title.revealed + .section-ornament::after {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Subtitle animations */
+.section-subtitle {
+    text-align: center;
+    color: var(--gray-medium);
+    font-size: 1.1rem;
+    font-weight: 300;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease 0.6s, transform 1s cubic-bezier(0.19, 1, 0.22, 1) 0.6s;
+    display: flex;
+    justify-content: center;
+}
+
+.section-subtitle.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Glow effect on hover */
+.section-title:hover::after {
+    background: linear-gradient(90deg, 
+        rgba(212, 175, 55, 0),
+        rgba(229, 199, 107, 1) 20%,
+        rgba(229, 199, 107, 1) 80%,
+        rgba(212, 175, 55, 0)
+    );
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add elegance to the first and last words */
+.section-title .word:first-child,
+.section-title .word:last-child {
+    color: var(--primary);
+}
+
+/* Special effect for the featured section */
+.featured-works .section-title.revealed::after {
+    animation: shimmer 3s infinite alternate;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100px;
+    }
+    100% {
+        background-position: 100px;
+    }
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .section-title {
+        padding-bottom: 1.5rem;
+    }
+    
+    .section-title.revealed::after {
+        width: 80px;
+    }
+}
