@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the intersection observer for revealing elements on scroll
     initScrollObserver();
     
+    // Initialize section title animations
+    initSectionTitleAnimations();
+    
     // Initially show elements that are already in view
     document.querySelectorAll('.step, .testimonial-wrapper, .glass-panel').forEach(element => {
         element.classList.add('is-visible');
@@ -39,5 +42,34 @@ function initScrollObserver() {
     // Start observing each element
     elements.forEach(element => {
         observer.observe(element);
+    });
+}
+
+/**
+ * Initialize animations for section titles
+ * Adds the 'revealed' class when they scroll into view
+ */
+function initSectionTitleAnimations() {
+    const sectionTitles = document.querySelectorAll('.section-title');
+    
+    // Create an Intersection Observer for section titles
+    const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add the revealed class to animate the underline
+                entry.target.classList.add('revealed');
+                
+                // Stop observing once revealed
+                titleObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Start observing each section title
+    sectionTitles.forEach(title => {
+        titleObserver.observe(title);
     });
 }
