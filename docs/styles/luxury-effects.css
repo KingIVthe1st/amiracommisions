@@ -1,0 +1,307 @@
+/* Advanced Luxury Effects - Premium Design Enhancements */
+
+/* Custom cursor */
+body {
+    cursor: none;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cursor-active {
+    opacity: 1;
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+    opacity: 0;
+}
+
+.cursor-active.cursor-follower {
+    opacity: 0.5;
+}
+
+.cursor-hover {
+    transform: scale(1.5);
+}
+
+/* Magnetic buttons */
+.magnetic-button {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.75, -0.5, 0, 1.75);
+}
+
+/* Ultra-refined typography */
+h1, h2, h3, .gradient-text {
+    font-kerning: normal;
+    font-feature-settings: "kern", "liga", "clig", "calt";
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+h1 {
+    letter-spacing: -0.03em;
+    font-weight: 400;
+}
+
+h2 {
+    letter-spacing: -0.01em;
+}
+
+p {
+    font-kerning: normal;
+    font-feature-settings: "kern";
+    line-height: 1.8;
+}
+
+/* Premium spacing utilities */
+.luxury-spacing-top {
+    margin-top: clamp(3rem, 8vw, 6rem);
+}
+
+.luxury-spacing-bottom {
+    margin-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+/* Advanced background effects */
+.noise-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAABNJJREFUaEPtmttx4zAMRVlJmvAmaW+S9CaZdJL0Jt5UYtL5sEYCBEjJlp3M7K74EU9K5AGEBMCP9/f3r6+vr6/X19evvE797D3P+zlnXddlmaa8neapfc+yLNu2bdvr1+fn5/b29vb98PDw/fj4mMf22H523NMb5J8eeHp/wHlkzAnIHsBu/4iZGPv17EzHQbDzXk+0FnY+EuDtAGxZluI87g/7nmUyN86j7rkLjDpQCYt7Tl2IAjv+jwJGQKSACl7sFfByTLluv24dCxAZ6FGQBAXHGaRdqwcUkDKsgkgwU7BUuHtBzDoQCaiMRZ4CEsdbltm3ACWnogMeZ6RJzwg0N6Y0k0wBQZdUZJ0t9gDCeAGWfpd34h1A/ZaZgJDUacVTZWKv8WH/Z1kMcCmTjbMxlAOZZ71WIp+Fg8ZtYqhwGg5kLMYZzCIELnRkAqJA48CJkTqGhcGAq+G7c0iiztAyCsZNIzSLWsflAAVgAaJlPTBAhwApKXQHxPMmzvOOL3JgRZuq02RAvZeBlCgHKHB3QFxwZIbfGEQWnzLTLbBWowbB5kCk05Epm7HsOVVMnEOOCqRVjdE4zxoAIe5QJP8CRLN2RjNrQQMWZWlGTlPJSkpqp14TN4Sdu0RhqjORmXbzd7F/VC0RWF2dRhAZXM5Y2AwQeY82CzsjKEetxVyJB3ueYK1lkZnTDDkDqfP2JJbSGp8Jp6UhDNZbpF8/CgJwUj0c91kMuQB0Eqk1fscwZpCsW4FJdnKKRcbLmiwKnqUhHOaQpG5jRjVpFUQGUCJMAcxapJ9rR9JZuOpXGYpX8hhQa13KiNQjTmNsUYmb3q3SGlcuNa7V/wOkE3XrHhFQbHwyiKnWwrRqYMlYLMvGjzWC3SwyYpSBs3S/BCOz1uJUXh6OWjW5DmHHoL0lJMfpXC3c2A8HIgPUqnRXg0TmmmpgHodFmdEqnJVlZtZHchrCVOvSgVdkptMkdFHp1iKd7OM6IK+LTI2RTQJI3aO7aKJZ0jV1Ty0qbXkuE/lRcXiV+EIqO41hKnBG2sQTpUpRGe3JqnHrdcuAxwS7p36DpD0aWCeWfYdKV0+RqSA9W1VCcN8MpBrGNOIVhKJ1+mVDpY1qfCsz9bCGdlpnYxU4bQxLGXmzj2KnCsjMTGzlehogGcSR9JpUWpkBlPcnQDVrwdKopzTNEVgNJKOx7QxBwKJaSzuslqpAujMD0jtJXALU1kGhXz0lS5J60dR8JMDdH+0DRdNuZqOIqYPGaW+O1nCuZmXGXmCKpUzDrpkqJq3XvBNLZAFSLq2GfXOBpMJHzaGMtbRCd9KqMoHjqsYotXJoNGYMpCOhUW0SGXcAXDMXLSRzU1mOHR1tV2BakwNCszhVV0CjzWJkbBuTbh4BmfJdNXbPcQGTOpVQnUwbxRgbadOgzV4dJP0uQNTDojVvFLjxAJGBxADQh49pKKPrq+cj4K2S7w5EOpVdZ+phD1gX2dWBKCBtK1pBGF8ZKSCJr9OlB7Wsc6tAgLMnWUxMupTtNgx4WtJNT46jHtKAXPPkONNYzgTcY0ZZ90rLnEHVUFbr1VL/6rO9S0D+AxPhtVj5U5kiAAAAAElFTkSuQmCC');
+    opacity: 0.02;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Premium scroll effects */
+@keyframes scroll-down-pulse {
+    0%, 100% { opacity: 0.8; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(6px); }
+}
+
+.scroll-indicator .mouse {
+    border-color: var(--primary);
+    opacity: 0.8;
+}
+
+.scroll-indicator .wheel {
+    animation: scroll-down-pulse 2s infinite;
+}
+
+/* Advanced hover effects */
+.artwork-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.3), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.artwork-link:hover::before {
+    opacity: 0.6;
+}
+
+/* Text highlight effect */
+::selection {
+    background-color: rgba(212, 175, 55, 0.3);
+    color: var(--black);
+}
+
+/* Ultra-smooth scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Advanced image effects */
+.artwork-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, transparent 50%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.artwork-item:hover .artwork-image::after {
+    opacity: 1;
+}
+
+/* Premium button hover effects */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    border-radius: 50px;
+    border: 1px solid var(--primary);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: -1;
+}
+
+.btn:hover::after {
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+
+/* Particle background effect (will be added via JS) */
+.particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Refined line spacing for paragraphs */
+p {
+    margin-bottom: 1.8em;
+    line-height: 1.8;
+}
+
+p + p {
+    margin-top: -0.5em;
+}
+
+/* Text splitting animation classes */
+.split-text .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition-delay: calc(var(--char-index) * 0.05s);
+}
+
+.split-text.revealed .char {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Refined section spacing */
+section {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(5rem, 12vw, 10rem) 0;
+}
+
+section + section {
+    margin-top: -2rem; /* Creates overlapping sections */
+}
+
+/* Premium container width adjustments */
+.container {
+    width: 92%;
+    max-width: 1440px;
+    padding: 0 clamp(1rem, 5vw, 4rem);
+}
+
+/* High-end scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Premium shape decorations */
+.luxury-shape {
+    position: absolute;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shape-circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid var(--primary);
+}
+
+.shape-square {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--primary);
+    transform: rotate(45deg);
+}
+
+/* Refined section transitions */
+.section-transition {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, var(--light));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.dark-section .section-transition {
+    background: linear-gradient(to bottom, transparent, var(--dark));
+}
+
+/* Refined typographic details */
+.small-caps {
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
