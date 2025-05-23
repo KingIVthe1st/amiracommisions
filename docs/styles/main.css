@@ -1018,6 +1018,12 @@ p {
     .artwork-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+        grid-auto-rows: auto;
+    }
+    
+    .artwork-item {
+        height: auto !important;
+        margin-bottom: 0 !important;
     }
     
     .process-steps {
@@ -1057,8 +1063,17 @@ p {
         padding: 1rem 1.5rem;
     }
     
+    .artwork-image,
+    .artwork-item,
+    .artwork-link {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
     .artwork-image img {
-        height: 300px;
+        height: auto !important;
+        aspect-ratio: 1/1;
+        object-fit: cover;
     }
 }
 
