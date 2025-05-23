@@ -361,7 +361,7 @@ p {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('../images/Camel Portrait.png') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('../images/optimized/Camel Portrait.png') no-repeat center center/cover;
     background-attachment: fixed;
     color: var(--white);
     text-align: center;
@@ -900,8 +900,6 @@ p {
     margin-top: 1.5rem;
 }
 
-
-
 /* Premium Footer */
 .footer {
     background: linear-gradient(135deg, #252527 0%, #1a1a1c 100%);
@@ -962,6 +960,7 @@ p {
     font-weight: 600;
     background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
@@ -1079,6 +1078,42 @@ p {
         font-size: 1rem;
     }
     
+    .section-title {
+        padding: 0 1rem;
+    }
+
+    .section-title .section-title-container,
+    .section-title .word {
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    /* Fix for split text elements on mobile */
+    .split-text {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+    
+    .split-text .section-title-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .split-text .word {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        margin: 0 0.15rem;
+        display: inline-block;
+    }
+
     .featured-works,
     .process-section,
     .testimonial-section,

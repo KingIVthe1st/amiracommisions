@@ -1,0 +1,13 @@
+{
+  "name": "amira-commissions-optimization",
+  "version": "1.0.0",
+  "description": "Image optimization for Amira Rahim Commissions",
+  "main": "optimize-images.js",
+  "scripts": {
+    "optimize": "node optimize-images.js"
+  },
+  "dependencies": {
+    "clean-css-cli": "^5.6.3",
+    "sharp": "^0.32.0"
+  }
+}
